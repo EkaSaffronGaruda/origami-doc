@@ -367,6 +367,10 @@ In this case, the conditions for the request to be accepted are as follows:
 
 These conditions must be filled or else the server will produce a client error and ignore the stream.
 
+Upon successful reading of the buffer, the server shall answer with `ACCEPTED` status.
+
+In case of corruption, refer to 5.1.6.
+
 ## 5.1.6. Data corruption status
 Upon detecting a corrupt data packet, the receiving party answers with a `CORRUPTED_DATA` status, along with the checksum provided by the transmitting party, such as:
 ```
