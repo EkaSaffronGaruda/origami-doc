@@ -22,7 +22,7 @@ This protocol is known as Origami. I designed it because I wanted something for 
 +-----------------------------------------+
 | Channel ID                              |
 +-----------------------------------------+
- <--------------- <=0xff ---------------->
+ <-------------- <=0xffff --------------->
 +-----------------------------------------+
 | DATA                                    |
 | ....                                    |
@@ -41,7 +41,7 @@ This protocol is known as Origami. I designed it because I wanted something for 
 +-----------------------------------------+
 | Channel ID                              |
 +-----------------------------------------+
- <--------------- <=0xff ---------------->
+ <-------------- <=0xffff --------------->
 +-----------------------------------------+
 | DATA                                    |
 | ....                                    |
@@ -51,7 +51,7 @@ This protocol is known as Origami. I designed it because I wanted something for 
 ## 1.3. Data Block
 ```
  <---------------- <= 65535 bytes ----------------->
- <- 32 bytes ->   <- 4 bytes ->  <- <=65499 bytes ->
+ <- 32 bytes ->   <- 2 bytes ->  <- <=65501 bytes ->
 +----------------+--------------+-------------------+
 | Checksum       | SIZE         | MESSAGE           |
 +----------------+--------------+-------------------+
@@ -67,7 +67,7 @@ This protocol is known as Origami. I designed it because I wanted something for 
 
 ### 2.0.1 SIZE
 
-`u16` value. SIZE field is to define the size of the packet body, max size is 0xff, i.e. 65535.
+`u16` value. SIZE field is to define the size of the packet body, max size is 0xffff, i.e. 65535.
 
 ### 2.0.2 Channel ID
 
@@ -413,4 +413,4 @@ Receiving party, upon detecting a corruption, must answer with a `CORRUPTED_DATA
 
 # 7. Flow Control
 
-To avoid congestion, Origami has a header field "SIZE" as mentioned in 2.0.1. SIZE field takes in 4 bytes (integer) and cannot be more than 0xff, i.e. 65535, as maximum body size can be 65535 to avoid congestion over channels. This means, on one go, at max of approximately 64KiB can be transmitted.
+To avoid congestion, Origami has a header field "SIZE" as mentioned in 2.0.1. SIZE field takes in 4 bytes (integer) and cannot be more than 0xffff, i.e. 65535, as maximum body size can be 65535 to avoid congestion over channels. This means, on one go, at max of approximately 64KiB can be transmitted.
