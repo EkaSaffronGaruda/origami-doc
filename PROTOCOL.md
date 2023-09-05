@@ -13,8 +13,8 @@ This protocol is known as Origami. I designed it because I wanted something for 
 ## 1.1. Client Header
 
 ```
- <--------------- 8 bytes --------------->
- <- 2 bytes ->    <- 2 byte -> <- 4 byte ->
+ <--------------- 6 bytes --------------->
+ <- 2 bytes ->    <- 2 byte -> <- 2 byte ->
 +---------------+------------+------------+
 | TYPE          | VERSION    | SIZE       |
 +---------------+------------+------------+
@@ -32,8 +32,8 @@ This protocol is known as Origami. I designed it because I wanted something for 
 ## 1.2. Server Header
 
 ```
- <---------- 6 bytes ----------->
- <- 2 bytes ->   <- 4 byte ->     <- 0 ->
+ <---------- 4 bytes ----------->
+ <- 2 bytes ->   <- 2 bytes ->     <- 0 ->
 +-------------+-----------------+---------+
 | STAT        | SIZE            | 0       |
 +-------------+-----------------+---------+
@@ -67,7 +67,7 @@ This protocol is known as Origami. I designed it because I wanted something for 
 
 ### 2.0.1 SIZE
 
-SIZE field is to define the size of the packet body, max size is 0xff, i.e. 65535.
+`u16` value. SIZE field is to define the size of the packet body, max size is 0xff, i.e. 65535.
 
 ### 2.0.2 Channel ID
 
